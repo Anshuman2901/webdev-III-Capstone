@@ -1,661 +1,1231 @@
-# CollabFlow - Enterprise Project & Real-Time Collaboration Management Platform
+# 🚀 CollabFlow — Enterprise Project & Real-Time Collaboration Platform
 
-> **Academic Capstone Project — Backend & Full-Stack Web Development**  
-> **Student Name:** Anshuman Jha  
-> **Roll Number:** 2501010110  
-> **Course:** Web Development Backend & Full-Stack Capstone  
-> **Academic Year:** 2026  
+> An enterprise-style project and task management platform built with Node.js, Express.js, MongoDB, Mongoose, JWT Authentication, and Socket.IO.
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Node.js-Backend-green?logo=node.js" alt="Node.js">
+  <img src="https://img.shields.io/badge/Express.js-Framework-black?logo=express" alt="Express.js">
+  <img src="https://img.shields.io/badge/MongoDB-Database-green?logo=mongodb" alt="MongoDB">
+  <img src="https://img.shields.io/badge/Socket.IO-Real--Time-black?logo=socket.io" alt="Socket.IO">
+  <img src="https://img.shields.io/badge/Authentication-JWT-blue" alt="JWT">
+  <img src="https://img.shields.io/badge/Project-Academic%20Capstone-orange" alt="Academic Capstone">
+</p>
+
+---
+
+## 👨‍💻 Project Information
+
+| Detail | Information |
+|---|---|
+| **Project Name** | CollabFlow |
+| **Student Name** | Anshuman Jha |
+| **Roll Number** | 2501010110 |
+| **Course** | Web Development Backend & Full-Stack Capstone |
+| **Academic Year** | 2026 |
+| **Project Type** | Backend & Full-Stack Web Development |
 
 ---
 
 ## 📑 Table of Contents
+
 1. [Project Overview](#-project-overview)
-2. [Key Highlights & Capabilities](#-key-highlights--capabilities)
-3. [System Architecture & Design Patterns](#-system-architecture--design-patterns)
-4. [Comprehensive 40-Lecture Syllabus Matrix (Lectures 1 - 40)](#-comprehensive-40-lecture-syllabus-matrix)
-5. [Tech Stack & Dependencies](#-tech-stack--dependencies)
-6. [Folder & File Directory Structure](#-folder--file-directory-structure)
-7. [Step-by-Step Installation & Setup Guide](#-step-by-step-installation--setup-guide)
-8. [Database Seeding & Default Credentials](#-database-seeding--default-credentials)
-9. [Complete REST API Reference (GET, POST, PUT, PATCH, DELETE)](#-complete-rest-api-reference)
-10. [Real-Time Collaboration & WebSockets (Socket.IO & EventEmitter)](#-real-time-collaboration--websockets)
-11. [CLI Utility & System Diagnostics (cli.js)](#-cli-utility--system-diagnostics)
-12. [Automated API Testing Suite (tests/api.test.js)](#-automated-api-testing-suite)
-13. [Web Dashboard & User Interface Walkthrough](#-web-dashboard--user-interface-walkthrough)
-14. [Viva Voce & Presentation Questions & Answers](#-viva-voce--presentation-qa)
+2. [Key Features](#-key-features)
+3. [System Architecture](#-system-architecture)
+4. [40-Lecture Syllabus Implementation](#-40-lecture-syllabus-implementation)
+5. [Technology Stack](#-technology-stack)
+6. [Project Directory Structure](#-project-directory-structure)
+7. [Installation and Setup](#-installation-and-setup)
+8. [Database Seeding and Demo Accounts](#-database-seeding-and-demo-accounts)
+9. [REST API Documentation](#-rest-api-documentation)
+10. [Real-Time Collaboration](#-real-time-collaboration)
+11. [CLI Utility](#-cli-utility)
+12. [Automated Testing](#-automated-testing)
+13. [Web Dashboard](#-web-dashboard)
+14. [Viva Voce Preparation](#-viva-voce-preparation)
+15. [Conclusion](#-conclusion)
 
 ---
 
 ## 🌟 Project Overview
 
-**CollabFlow** is a modern, enterprise-grade project and task management system built from the ground up using **Node.js, Express.js, MongoDB, Mongoose ODM, JWT Authentication (Access + Refresh tokens), and Socket.IO**.
+**CollabFlow** is a project and task management platform designed to help teams organize projects, assign tasks, monitor progress, and collaborate in real time.
 
-The primary objective of this capstone project is to demonstrate **100% syllabus mastery** by implementing every single backend concept taught in class from **Lecture 1 through Lecture 40** (Units 1, 2, 3, and 4) in production-quality code.
+The application is developed using **Node.js, Express.js, MongoDB, Mongoose ODM, JWT Authentication, and Socket.IO**.
 
-### Core Problems CollabFlow Solves:
-- **Centralized Project & Task Tracking:** Teams can organize workspaces, assign tasks, establish priority matrices, and manage deadlines.
-- **Role-Based Governance (RBAC):** Strict security boundaries ensuring Developers, Managers, and Admins can only perform authorized actions.
-- **Real-Time Synchronization:** Instant WebSocket broadcasts for live room chat and instantaneous task updates without manual page refreshes.
-- **Deep Analytics:** MongoDB Aggregation Pipelines calculating team productivity, workload allocation, and project status breakdowns.
+The primary objective of this academic capstone project is to demonstrate practical implementation of backend and full-stack web development concepts covered across **40 lectures in Units 1, 2, 3, and 4**.
 
----
+### Problems Solved by CollabFlow
 
-## 🚀 Key Highlights & Capabilities
-
-- 🔐 **Dual-Token Authentication (JWT):** Short-lived Access Tokens (15 mins) and rotatable Refresh Tokens (7 days) stored securely in the database.
-- 🛡️ **Role-Based Access Control (RBAC):** Three distinct roles (`admin`, `manager`, `developer`) guarding sensitive administrative operations.
-- 📋 **Full MVC CRUD:** End-to-end Create, Read, Update, and Delete flows for Projects, Tasks, and User management.
-- 🔍 **Advanced Querying & Pagination:** Dynamic filtering by status/priority, case-insensitive keyword search (`$regex`), sorting (`.sort()`), and pagination (`.skip()`, `.limit()`).
-- 📊 **MongoDB Aggregation Pipelines:** Real-time metrics computed via multi-stage pipelines (`$match`, `$group`, `$sort`, `$project`, `$lookup`).
-- ⚡ **Decoupled Architecture with EventEmitter:** Internal system events (e.g. task assignment, status transition) trigger asynchronous MongoDB activity logging without blocking the HTTP request thread.
-- 💬 **Live Collaboration (WebSockets & Socket.IO):** Multi-room chat, typing indicators, and real-time task update notifications.
-- 🖥️ **Custom CLI Utility (`cli.js`):** Built using core Node.js modules (`fs`, `path`, `os`, `http`, `process.argv`) for diagnostics and database seeding.
-- 🧪 **Automated Test Suite (`tests/api.test.js`):** 15 automated test cases testing GET, POST, PUT, PATCH, and DELETE operations with 100% pass rate.
-- 🎨 **Modern Interactive Web UI:** Responsive developer dashboard served statically via Express, featuring a live syllabus tracker and one-click role switching.
+- **Centralized Project Management:** Provides a common platform to create projects, organize tasks, assign responsibilities, and track deadlines.
+- **Role-Based Access Control:** Defines separate permissions for Admin, Manager, and Developer accounts.
+- **Real-Time Collaboration:** Enables users to exchange messages and receive instant task updates using Socket.IO.
+- **Task Monitoring:** Supports task status, priority, searching, filtering, sorting, and pagination.
+- **Team Analytics:** Uses MongoDB aggregation pipelines to calculate project and task statistics.
+- **Activity Tracking:** Records important application activities using Node.js EventEmitter.
 
 ---
 
-## 🏗️ System Architecture & Design Patterns
+## 🚀 Key Features
 
-CollabFlow adheres strictly to the **MVC (Model-View-Controller)** pattern and **Layered Separation of Concerns**:
+### 🔐 Authentication and Security
 
+- User registration and login.
+- JWT-based authentication.
+- Short-lived Access Tokens (15 minutes).
+- Refresh Tokens (7 days).
+- Refresh token validation and revocation.
+- Password hashing using bcryptjs.
+- Protected API routes.
+- Role-Based Access Control (RBAC).
+
+### 👥 User Roles and Permissions
+
+The platform supports three primary roles:
+
+| Role | Main Permissions |
+|---|---|
+| **Admin** | User role management, project deletion, administrative operations |
+| **Manager** | Project creation, task creation, task assignment, analytics access |
+| **Developer** | View tasks, update task status, participate in team collaboration |
+
+### 📋 Project and Task Management
+
+- Create, read, update, and delete projects.
+- Create, read, update, and delete tasks.
+- Assign tasks to team members.
+- Set task priority and status.
+- Search tasks using keywords.
+- Filter tasks by status and priority.
+- Sort records by selected fields.
+- Paginate large result sets.
+
+### 📊 MongoDB Analytics
+
+MongoDB aggregation pipelines are used to calculate:
+
+- Total projects.
+- Total tasks.
+- Task status distribution.
+- Task priority distribution.
+- Project and team activity statistics.
+
+### ⚡ Real-Time Collaboration
+
+- Project-based chat rooms.
+- Real-time message broadcasting.
+- Typing indicators.
+- Task update notifications.
+- Automatic dashboard updates using Socket.IO.
+
+### 🧪 Development and Testing
+
+- Custom Node.js CLI utility.
+- Database seeding.
+- Automated API testing using Node's Test Runner and Supertest.
+- Postman API collection.
+- Centralized error handling.
+- Request logging and execution-time monitoring.
+
+---
+
+## 🏗️ System Architecture
+
+CollabFlow follows the **MVC (Model-View-Controller)** architecture and separates the application into different layers.
+
+```text
++-------------------------------------------------------------------+
+|                           CLIENT TIER                             |
+|                                                                   |
+|        Web Dashboard / Postman Client / CLI Utility               |
++-------------------------------------------------------------------+
+                                |
+                         HTTP / WebSocket
+                                |
+                                v
++-------------------------------------------------------------------+
+|                       EXPRESS & HTTP SERVER                       |
+|                                                                   |
+|              src/server.js + Socket.IO Server                     |
++-------------------------------------------------------------------+
+                                |
+                                v
++-------------------------------------------------------------------+
+|                       MIDDLEWARE LAYER                            |
+|                                                                   |
+|       CORS | Morgan | JSON Parser | Logger | Error Handler        |
+|                                                                   |
+|          JWT Authentication | Role-Based Authorization           |
++-------------------------------------------------------------------+
+                                |
+                                v
++-------------------------------------------------------------------+
+|                           ROUTES LAYER                            |
+|                                                                   |
+|       Auth Routes | Project Routes | Task Routes | User Routes    |
+|                         Analytics Routes                          |
++-------------------------------------------------------------------+
+                                |
+                                v
++-------------------------------------------------------------------+
+|                        CONTROLLER LAYER                           |
+|                                                                   |
+|       Authentication | Projects | Tasks | Users | Analytics      |
++-------------------------------------------------------------------+
+                       /                  \
+                      /                    \
+                     v                      v
++--------------------------------+  +-------------------------------+
+|       EVENT SYSTEM             |  |         MONGOOSE ODM          |
+|                                |  |                               |
+|     Node.js EventEmitter       |  |       Models and Schemas      |
+|     Activity Logging           |  |       Validation and Indexes  |
+|     Socket Notifications       |  |       Database Operations    |
++--------------------------------+  +-------------------------------+
+                                               |
+                                               v
+                                  +-------------------------------+
+                                  |        MONGODB DATABASE       |
+                                  |                               |
+                                  |  Users                        |
+                                  |  Projects                     |
+                                  |  Tasks                        |
+                                  |  ActivityLogs                 |
+                                  +-------------------------------+
 ```
-+-------------------------------------------------------------------------+
-|                              CLIENT TIER                                |
-|   Interactive Web Dashboard (HTML5, CSS3, JS)  /  Postman Client / CLI  |
-+-------------------------------------------------------------------------+
-                                    │
-                               HTTP / WebSocket
-                                    ▼
-+-------------------------------------------------------------------------+
-|                           EXPRESS & HTTP SERVER                         |
-|   src/server.js (http.createServer, Socket.IO Server, Static Files)     |
-+-------------------------------------------------------------------------+
-                                    │
-                            Middleware Pipeline
-   ┌────────────────────────────────┴─────────────────────────────────┐
-   ▼                                                                   ▼
-[CORS & Morgan Logging]                                      [Logger Middleware]
-   │                                                                   │
-   ▼                                                                   ▼
-[express.json() Parser]                                      [Centralized Error]
-                                    │
-                                    ▼
-+-------------------------------------------------------------------------+
-|                               ROUTES TIER                               |
-|   /api/v1/auth   │   /api/v1/projects   │   /api/v1/tasks   │   /users  |
-+-------------------------------------------------------------------------+
-                                    │
-                       Route Guard Middlewares
-   ┌────────────────────────────────┴─────────────────────────────────┐
-   ▼                                                                   ▼
-[authenticateJWT (Token Verify)]                            [authorizeRoles (RBAC)]
-                                    │
-                                    ▼
-+-------------------------------------------------------------------------+
-|                           CONTROLLERS (MVC)                             |
-|   Business logic execution, Input validation, Response formatting       |
-+-------------------------------------------------------------------------+
-             │                                              │
-             ▼                                              ▼
-+───────────────────────────+                 +───────────────────────────+
-|     Node EventEmitter     |                 |       MONGOOSE ODM        |
-|  Async Audit Logging &    |                 |   Schemas, Validations,   |
-|  Socket.IO Broadcasting   |                 |   Indexes, Relationships  |
-+───────────────────────────+                 +───────────────────────────+
-                                                            │
-                                                            ▼
-                                              +───────────────────────────+
-                                              |      MONGODB DATABASE     |
-                                              |  Users, Projects, Tasks,  |
-                                              |       ActivityLogs        |
-                                              +───────────────────────────+
-```
+
+### Architecture Explanation
+
+1. **Client Layer:** Users interact with the application through the web dashboard or API clients.
+2. **Server Layer:** Express handles HTTP requests, while Socket.IO supports real-time communication.
+3. **Middleware Layer:** Handles authentication, authorization, logging, request parsing, and error handling.
+4. **Routes Layer:** Directs incoming API requests to the appropriate controller.
+5. **Controller Layer:** Contains application logic and handles database operations.
+6. **Event System:** Uses EventEmitter to trigger internal application events and activity logging.
+7. **Database Layer:** MongoDB stores application data, while Mongoose manages schemas, validation, and database interactions.
 
 ---
 
-## 📚 Comprehensive 40-Lecture Syllabus Matrix
+## 📚 40-Lecture Syllabus Implementation
 
-Every single lecture from the course curriculum is directly implemented in the code as detailed below:
+The following matrix maps the course concepts to their intended implementation in CollabFlow.
 
-### 🔷 Unit 1: Node.js Runtime & Core Backend Fundamentals
+### 🔷 Unit 1: Node.js Runtime and Core Backend Fundamentals
 
-| Lecture | Topic Name | Implementation in CollabFlow | Relevant Source Files |
-| :--- | :--- | :--- | :--- |
-| **Lecture 1** | **Introduction to Backend Development** | Implemented client-server architecture, JSON request-response lifecycle, stateless REST principles. | [src/server.js](file:///d:/Web%20Dev%20Capstone/src/server.js) |
-| **Lecture 2** | **HTTP Fundamentals** | Handled HTTP verbs (GET, POST, PUT, DELETE, PATCH), proper status codes (200, 201, 400, 401, 403, 404, 500), headers. | [src/routes/](file:///d:/Web%20Dev%20Capstone/src/routes), [src/controllers/](file:///d:/Web%20Dev%20Capstone/src/controllers) |
-| **Lecture 3** | **Node.js Runtime & NPM** | Configured `package.json`, NPM lifecycle scripts (`start`, `dev`, `cli`, `seed`, `test`), production and dev dependencies. | [package.json](file:///d:/Web%20Dev%20Capstone/package.json) |
-| **Lecture 4** | **Node.js Modules** | Structured project using CommonJS modules (`module.exports`, `require`), avoiding global namespace pollution. | Throughout `src/` |
-| **Lecture 5** | **Core Node.js Modules** | Utilized `path` (cross-platform path resolution), `fs` (file handling), `os` (hardware telemetry), `http` (HTTP server wrapper). | [cli.js](file:///d:/Web%20Dev%20Capstone/cli.js), [src/config/env.js](file:///d:/Web%20Dev%20Capstone/src/config/env.js) |
-| **Lecture 6** | **Process Object & CLI** | Parsed command-line arguments with `process.argv`, accessed `process.env`, handled `process.exit()`, captured `SIGINT` for graceful shutdown. | [cli.js](file:///d:/Web%20Dev%20Capstone/cli.js), [src/server.js](file:///d:/Web%20Dev%20Capstone/src/server.js) |
-| **Lecture 7** | **HTTP Server Development** | Built native HTTP server via `http.createServer(app)` to multiplex Express routing and Socket.IO on the same TCP port. | [src/server.js](file:///d:/Web%20Dev%20Capstone/src/server.js) |
-| **Lecture 8** | **API Testing & Debugging** | Implemented 15 automated test cases using Node test runner + Supertest; generated complete Postman collection. | [tests/api.test.js](file:///d:/Web%20Dev%20Capstone/tests/api.test.js), [Postman_Collection.json](file:///d:/Web%20Dev%20Capstone/Postman_Collection.json) |
+| Lecture | Topic | Implementation in CollabFlow | Relevant Files |
+|---|---|---|---|
+| 1 | Introduction to Backend Development | Client-server architecture and JSON request-response lifecycle | `src/server.js` |
+| 2 | HTTP Fundamentals | GET, POST, PUT, PATCH, DELETE and HTTP status codes | `src/routes/`, `src/controllers/` |
+| 3 | Node.js Runtime and NPM | Package configuration, dependencies and NPM scripts | `package.json` |
+| 4 | Node.js Modules | CommonJS modules using `require()` and `module.exports` | `src/` |
+| 5 | Core Node.js Modules | Usage of `fs`, `path`, `os`, and `http` | `cli.js`, `src/config/` |
+| 6 | Process Object and CLI | `process.argv`, `process.env`, `process.exit()` and SIGINT handling | `cli.js`, `src/server.js` |
+| 7 | HTTP Server Development | Native HTTP server using `http.createServer()` | `src/server.js` |
+| 8 | API Testing and Debugging | Automated testing using Node Test Runner and Supertest | `tests/api.test.js` |
 
----
+### 🔷 Unit 2: Express.js and MVC Architecture
 
-### 🔷 Unit 2: Express.js & MVC Architecture
+| Lecture | Topic | Implementation in CollabFlow | Relevant Files |
+|---|---|---|---|
+| 9 | Introduction to Express.js | Express application and middleware configuration | `src/server.js` |
+| 10 | CRUD Fundamentals | Create, Read, Update, Delete operations | `src/controllers/` |
+| 11 | Request and Response Handling | `req.params`, `req.query`, `req.body`, `res.status()` | `src/controllers/` |
+| 12 | Introduction to MVC Architecture | Models, Views, and Controllers separation | `src/models/`, `src/public/`, `src/controllers/` |
+| 13 | Controllers and Business Logic | Controller-based application logic | `src/controllers/` |
+| 14 | CRUD Operations using MVC | Request-to-controller-to-model workflow | `src/controllers/projectController.js` |
+| 15 | Express Routing and REST APIs | Modular routes using `express.Router()` | `src/routes/` |
+| 16 | Middleware Basics | Application-level and custom middleware | `src/middlewares/` |
+| 17 | Middleware Chaining | Authentication, authorization, validation and controllers | `src/routes/taskRoutes.js` |
+| 18 | Error Handling | Custom errors and centralized error middleware | `src/utils/appError.js`, `src/middlewares/errorMiddleware.js` |
 
-| Lecture | Topic Name | Implementation in CollabFlow | Relevant Source Files |
-| :--- | :--- | :--- | :--- |
-| **Lecture 9** | **Introduction to Express.js** | Initialized Express app, registered global middleware pipeline, bound routes to port 5000. | [src/server.js](file:///d:/Web%20Dev%20Capstone/src/server.js) |
-| **Lecture 10** | **CRUD Fundamentals** | Implemented full Create, Read, Update, and Delete data operations across Projects and Tasks. | [src/controllers/taskController.js](file:///d:/Web%20Dev%20Capstone/src/controllers/taskController.js) |
-| **Lecture 11** | **Request & Response Handling** | Extracted URL parameters (`req.params`), search query parameters (`req.query`), JSON payloads (`req.body`), and structured `res.status().json()`. | [src/controllers/](file:///d:/Web%20Dev%20Capstone/src/controllers) |
-| **Lecture 12** | **Introduction to MVC Architecture** | Strict architectural separation: Models (`src/models/`), Views (`src/public/`), Controllers (`src/controllers/`). | `src/models`, `src/public`, `src/controllers` |
-| **Lecture 13** | **Controllers & Business Logic** | Thin route handlers delegating business validation, model queries, and event emissions to controller functions. | [src/controllers/](file:///d:/Web%20Dev%20Capstone/src/controllers) |
-| **Lecture 14** | **CRUD Operations using MVC** | Executed complete MVC CRUD workflow from client request -> controller -> model -> response. | `src/controllers/projectController.js` |
-| **Lecture 15** | **Express Routing & REST APIs** | Modular routers using `express.Router()` with versioned REST API prefix (`/api/v1/auth`, `/api/v1/tasks`, etc.). | [src/routes/](file:///d:/Web%20Dev%20Capstone/src/routes) |
-| **Lecture 16** | **Middleware Basics** | Application-level middleware (`express.json()`, `cors()`), custom execution duration timer in `loggerMiddleware`. | [src/middlewares/loggerMiddleware.js](file:///d:/Web%20Dev%20Capstone/src/middlewares/loggerMiddleware.js) |
-| **Lecture 17** | **Middleware Chaining** | Pipeline chaining: `authenticateJWT` -> `authorizeRoles` -> `validateTask` -> `createTask`. | [src/routes/taskRoutes.js](file:///d:/Web%20Dev%20Capstone/src/routes/taskRoutes.js) |
-| **Lecture 18** | **Error Handling** | Operational `AppError` class, centralized 404 handler, and global error handling middleware catching Mongoose CastErrors and duplicate keys. | [src/utils/appError.js](file:///d:/Web%20Dev%20Capstone/src/utils/appError.js), [src/middlewares/errorMiddleware.js](file:///d:/Web%20Dev%20Capstone/src/middlewares/errorMiddleware.js) |
+### 🔷 Unit 3: Databases and Mongoose ODM
 
----
+| Lecture | Topic | Implementation in CollabFlow | Relevant Files |
+|---|---|---|---|
+| 19 | Introduction to Databases (SQL vs NoSQL) | MongoDB document-oriented database | MongoDB models |
+| 20 | MongoDB Basics and Configuration | Local MongoDB and Atlas connection configuration | `src/config/db.js` |
+| 21 | MongoDB CRUD Operations | `create()`, `find()`, `findById()`, update and delete operations | `src/controllers/` |
+| 22 | Query Operations in MongoDB | Regex search, sorting, filtering and pagination | `src/controllers/taskController.js` |
+| 23 | Aggregation Pipeline and Indexing | `$match`, `$group`, `$sort`, `$project`, `$lookup` and indexes | `src/controllers/analyticsController.js`, `src/models/Task.js` |
+| 24 | Data Modelling and Relationships | User, Project and Task references using ObjectId and `populate()` | `src/models/` |
+| 25 | Mongoose ODM and Schema Design | Typed fields, timestamps, defaults and references | `src/models/` |
+| 26 | Data Validation using Mongoose | Required fields, enums, length and custom validators | `src/models/User.js` |
+| 27 | Connecting Node.js with MongoDB | `mongoose.connect()` and connection events | `src/config/db.js` |
+| 28 | Building REST APIs with DB Integration | Database-backed API endpoints | `src/routes/`, `src/controllers/` |
 
-### 🔷 Unit 3: Databases & Mongoose ODM
+### 🔷 Unit 4: Advanced Security, Authentication and Real-Time Communication
 
-| Lecture | Topic Name | Implementation in CollabFlow | Relevant Source Files |
-| :--- | :--- | :--- | :--- |
-| **Lecture 19** | **Introduction to Databases (SQL vs NoSQL)** | Utilized NoSQL JSON/BSON document model, comparing flexible schemas and horizontal scalability against relational SQL tables. | Documented in README, implemented via MongoDB |
-| **Lecture 20** | **MongoDB Basics & Configuration** | Setup connection supporting both local instance (`mongodb://127.0.0.1:27017`) and remote MongoDB Atlas clusters. | [src/config/db.js](file:///d:/Web%20Dev%20Capstone/src/config/db.js) |
-| **Lecture 21** | **MongoDB CRUD Operations** | `Model.create()`, `Model.find()`, `Model.findById()`, `Model.findByIdAndUpdate()`, `Model.findByIdAndDelete()`. | [src/controllers/](file:///d:/Web%20Dev%20Capstone/src/controllers) |
-| **Lecture 22** | **Query Operations in MongoDB** | Advanced querying: Case-insensitive search (`$regex`), status filtering, field sorting (`.sort()`), pagination (`.skip()`, `.limit()`). | [src/controllers/taskController.js](file:///d:/Web%20Dev%20Capstone/src/controllers/taskController.js) |
-| **Lecture 23** | **Aggregation Pipeline + Indexing** | Multi-stage aggregation (`$match`, `$group`, `$sort`, `$project`, `$lookup`) for project analytics; compound indexes (`{ project: 1, status: 1 }`). | [src/controllers/analyticsController.js](file:///d:/Web%20Dev%20Capstone/src/controllers/analyticsController.js), [src/models/Task.js](file:///d:/Web%20Dev%20Capstone/src/models/Task.js) |
-| **Lecture 24** | **Data Modelling & Relationships** | Normalized relational data modelling using Mongoose `ref` references (`User` <-> `Project` <-> `Task`), populated via `.populate()`. | [src/models/](file:///d:/Web%20Dev%20Capstone/src/models) |
-| **Lecture 25** | **Mongoose ODM + Schema Design** | Schema definitions with typed attributes (`String`, `Date`, `ObjectId`, `Array`), timestamps, and default values. | [src/models/Project.js](file:///d:/Web%20Dev%20Capstone/src/models/Project.js) |
-| **Lecture 26** | **Data Validation using Mongoose** | Built-in validators (`required`, `minlength`, `maxlength`, `enum`) and custom email regex validator. | [src/models/User.js](file:///d:/Web%20Dev%20Capstone/src/models/User.js) |
-| **Lecture 27** | **Connecting Node.js with MongoDB** | `mongoose.connect()` in `db.js` with lifecycle event monitoring (`connected`, `error`, `disconnected`). | [src/config/db.js](file:///d:/Web%20Dev%20Capstone/src/config/db.js) |
-| **Lecture 28** | **Building REST APIs with DB Integration** | Integrated MongoDB directly into production RESTful endpoints. | [src/routes/](file:///d:/Web%20Dev%20Capstone/src/routes) |
-
----
-
-### 🔷 Unit 4: Advanced Security, Authentication & Real-Time
-
-| Lecture | Topic Name | Implementation in CollabFlow | Relevant Source Files |
-| :--- | :--- | :--- | :--- |
-| **Lecture 29** | **Environment Variables** | System-level environment variables via `process.env` guarding port, secrets, and database strings. | [src/config/env.js](file:///d:/Web%20Dev%20Capstone/src/config/env.js) |
-| **Lecture 30** | **Config Management & dotenv** | Centralized configuration via `dotenv.config()`, providing `.env` and `.env.example` templates. | [.env](file:///d:/Web%20Dev%20Capstone/.env), [.env.example](file:///d:/Web%20Dev%20Capstone/.env.example) |
-| **Lecture 31** | **Authentication** | User identity registration and login verification flows. | [src/controllers/authController.js](file:///d:/Web%20Dev%20Capstone/src/controllers/authController.js) |
-| **Lecture 32** | **Authorization Concepts** | Strict separation between Authentication (Identity) and Authorization (Role permissions). | [src/middlewares/rbacMiddleware.js](file:///d:/Web%20Dev%20Capstone/src/middlewares/rbacMiddleware.js) |
-| **Lecture 33** | **Password Hashing (bcrypt)** | Cryptographic salt generation and one-way password hashing via `bcryptjs` in Mongoose pre-save hook; secure `comparePassword` method. | [src/models/User.js](file:///d:/Web%20Dev%20Capstone/src/models/User.js) |
-| **Lecture 34** | **JWT (JSON Web Tokens)** | Cryptographic token signing and payload verification using `jsonwebtoken`. | [src/utils/tokenHelper.js](file:///d:/Web%20Dev%20Capstone/src/utils/tokenHelper.js) |
-| **Lecture 35** | **Access Tokens, Refresh Tokens** | Dual-token security architecture: Short-lived Access Token (15 mins) + Long-lived rotatable Refresh Token (7 days) with revocation. | [src/controllers/authController.js](file:///d:/Web%20Dev%20Capstone/src/controllers/authController.js) |
-| **Lecture 36** | **Protected Routes** | `authenticateJWT` middleware verifying Bearer tokens and attaching user context to `req.user`. | [src/middlewares/authMiddleware.js](file:///d:/Web%20Dev%20Capstone/src/middlewares/authMiddleware.js) |
-| **Lecture 37** | **RBAC (Role-Based Access Control)** | `authorizeRoles('admin', 'manager')` middleware enforcing least privilege permissions across endpoints. | [src/middlewares/rbacMiddleware.js](file:///d:/Web%20Dev%20Capstone/src/middlewares/rbacMiddleware.js) |
-| **Lecture 38** | **EventEmitter** | Custom Node.js `EventEmitter` in `appEmitter.js` dispatching events (`task:created`, `task:status_changed`) to record audit trails in MongoDB. | [src/events/appEmitter.js](file:///d:/Web%20Dev%20Capstone/src/events/appEmitter.js) |
-| **Lecture 39** | **Web Sockets** | Bidirectional full-duplex communication over single persistent TCP connection. | [src/server.js](file:///d:/Web%20Dev%20Capstone/src/server.js) |
-| **Lecture 40** | **Socket.IO** | Multi-room real-time messaging, typing indicators, and instant task status broadcast synchronization. | [src/sockets/socketHandler.js](file:///d:/Web%20Dev%20Capstone/src/sockets/socketHandler.js) |
+| Lecture | Topic | Implementation in CollabFlow | Relevant Files |
+|---|---|---|---|
+| 29 | Environment Variables | Configuration through `process.env` | `src/config/env.js` |
+| 30 | Config Management and dotenv | Centralized environment configuration | `.env`, `.env.example` |
+| 31 | Authentication | User registration and login | `src/controllers/authController.js` |
+| 32 | Authorization Concepts | Authentication and authorization separation | `src/middlewares/rbacMiddleware.js` |
+| 33 | Password Hashing (bcrypt) | Password hashing and password comparison | `src/models/User.js` |
+| 34 | JWT (JSON Web Tokens) | JWT generation and verification | `src/utils/tokenHelper.js` |
+| 35 | Access Tokens and Refresh Tokens | Short-lived access tokens and refresh-token handling | `src/controllers/authController.js` |
+| 36 | Protected Routes | Bearer token verification middleware | `src/middlewares/authMiddleware.js` |
+| 37 | RBAC | Role-based endpoint access | `src/middlewares/rbacMiddleware.js` |
+| 38 | EventEmitter | Internal events and activity logging | `src/events/appEmitter.js` |
+| 39 | WebSockets | Persistent, bidirectional client-server communication | `src/server.js` |
+| 40 | Socket.IO | Real-time chat, rooms and task notifications | `src/sockets/socketHandler.js` |
 
 ---
 
-## 💻 Tech Stack & Dependencies
+## 💻 Technology Stack
 
 ### Backend Technologies
-- **Node.js** (v18+ / v24.14.1) — Asynchronous Event-Driven JavaScript Runtime
-- **Express.js** (v4.21.2) — Fast, unopinionated minimalist web framework
-- **MongoDB** (v8.2.6) — Document-oriented distributed NoSQL database
-- **Mongoose ODM** (v8.9.2) — Object Data Modeling library with schema validation
-- **Socket.IO** (v4.8.1) — Real-time bidirectional event-based communication
-- **bcryptjs** (v2.4.3) — Cryptographic salt and password hashing library
-- **jsonwebtoken** (v9.0.2) — RFC 7519 industry-standard JWT generator and validator
-- **dotenv** (v16.4.7) — Environment variable loader
-- **morgan** & **cors** — HTTP request logging and Cross-Origin Resource Sharing
 
-### Testing & Development
-- **Supertest** (v7.0.0) — High-level HTTP testing abstraction
-- **Node Test Runner** (`node:test`, `node:assert`) — Native fast testing framework
-- **Nodemon** (v3.1.9) — Development monitor with hot reload
+| Technology | Purpose |
+|---|---|
+| **Node.js** | JavaScript runtime environment |
+| **Express.js 4.21.2** | Backend web framework |
+| **MongoDB** | NoSQL document database |
+| **Mongoose 8.9.2** | Object Data Modeling (ODM) |
+| **Socket.IO 4.8.1** | Real-time bidirectional communication |
+| **bcryptjs 2.4.3** | Password hashing |
+| **jsonwebtoken 9.0.2** | JWT generation and verification |
+| **dotenv 16.4.7** | Environment variable management |
+| **Morgan** | HTTP request logging |
+| **CORS** | Cross-Origin Resource Sharing |
 
-### Frontend (View Tier)
-- **HTML5 & Vanilla JavaScript (ES6+)** — Client-side SPA logic with reactive DOM updates
-- **CSS3 (Custom Theme)** — Responsive dark-mode dashboard with CSS variables
+### Testing and Development
+
+| Technology | Purpose |
+|---|---|
+| **Node.js Test Runner** | Native automated testing |
+| **Node Assert** | Test assertions |
+| **Supertest 7.0.0** | HTTP endpoint testing |
+| **Nodemon 3.1.9** | Automatic server restart during development |
+| **Postman** | Manual API testing |
+
+### Frontend Technologies
+
+| Technology | Purpose |
+|---|---|
+| **HTML5** | Web page structure |
+| **CSS3** | Responsive dashboard styling |
+| **JavaScript ES6+** | Client-side application logic |
+| **Socket.IO Client** | Real-time frontend communication |
 
 ---
 
-## 📁 Folder & File Directory Structure
+## 📁 Project Directory Structure
 
-```
-d:\Web Dev Capstone/
-├── package.json                   # Project metadata, NPM scripts & dependencies (L3)
-├── .env                           # Environment secrets & database connection (L29, L30)
-├── .env.example                   # Environment configuration template (L30)
-├── cli.js                         # Custom CLI diagnostic & database seeder tool (L4-L7)
-├── Postman_Collection.json        # Exported Postman collection for all REST endpoints (L8)
-├── README.md                      # Comprehensive academic documentation (This file)
+```text
+CollabFlow/
+│
+├── package.json
+├── package-lock.json
+├── .env
+├── .env.example
+├── .gitignore
+├── cli.js
+├── Postman_Collection.json
+├── README.md
+│
 ├── tests/
-│   └── api.test.js                # Automated test suite (15/15 tests passing) (L8)
-├── src/
-│   ├── server.js                  # Express initialization & Socket.IO HTTP server (L1, L7, L9, L39, L40)
-│   ├── config/
-│   │   ├── env.js                 # Centralized dotenv configuration & validation (L29, L30)
-│   │   └── db.js                  # Mongoose MongoDB connection & event monitoring (L20, L27)
-│   ├── models/                    # Mongoose Models, Schemas, Indexes & Hooks (L23-L26)
-│   │   ├── User.js                # User schema, bcrypt hash hook, JWT refreshTokens (L26, L33, L37)
-│   │   ├── Project.js             # Project schema & member relationships (L24, L25)
-│   │   ├── Task.js                # Task schema with compound indexes & enums (L23, L26)
-│   │   └── ActivityLog.js         # Audit log records populated by EventEmitter (L38)
-│   ├── controllers/               # MVC Business Logic Controllers (L12-L14)
-│   │   ├── authController.js      # Register, Login, Refresh Token, Logout (L31, L34, L35)
-│   │   ├── userController.js      # User management & RBAC role updates (L37)
-│   │   ├── projectController.js   # Project CRUD & relationship populations (L10, L14, L21)
-│   │   ├── taskController.js      # Task CRUD, filters, pagination, regex search (L10, L22)
-│   │   └── analyticsController.js # MongoDB Aggregation Pipeline ($group, $match) (L23)
-│   ├── routes/                    # Modular Express REST Routers (L15, L28)
-│   │   ├── authRoutes.js          # Authentication endpoints
-│   │   ├── userRoutes.js          # User & RBAC endpoints
-│   │   ├── projectRoutes.js       # Project endpoints
-│   │   ├── taskRoutes.js          # Task endpoints
-│   │   └── analyticsRoutes.js     # Analytics endpoints
-│   ├── middlewares/               # Express Middleware Pipeline (L16-L18)
-│   │   ├── authMiddleware.js      # JWT Bearer token verification (L36)
-│   │   ├── rbacMiddleware.js      # Role-Based Access Control gatekeeper (L37)
-│   │   ├── validateMiddleware.js  # Request payload body validation (L11, L26)
-│   │   ├── loggerMiddleware.js    # Execution timer & HTTP logger (L16)
-│   │   └── errorMiddleware.js     # Centralized error handler & 404 handler (L18)
-│   ├── events/
-│   │   └── appEmitter.js          # Node.js EventEmitter for async events (L38)
-│   ├── sockets/
-│   │   └── socketHandler.js       # Socket.IO rooms, live chat & task sync (L39, L40)
-│   ├── utils/
-│   │   ├── appError.js            # Custom operational Error class (L18)
-│   │   └── tokenHelper.js         # JWT signing & verification utilities (L34, L35)
-│   └── public/                    # Interactive Web Dashboard (MVC View Tier)
-│       ├── index.html             # UI with student header, syllabus tracker & demo tabs
-│       ├── app.js                 # Client-side API fetch, token refresh & Socket.IO logic
-│       └── style.css              # Custom responsive stylesheet
+│   └── api.test.js
+│
+└── src/
+    │
+    ├── server.js
+    │
+    ├── config/
+    │   ├── env.js
+    │   └── db.js
+    │
+    ├── models/
+    │   ├── User.js
+    │   ├── Project.js
+    │   ├── Task.js
+    │   └── ActivityLog.js
+    │
+    ├── controllers/
+    │   ├── authController.js
+    │   ├── userController.js
+    │   ├── projectController.js
+    │   ├── taskController.js
+    │   └── analyticsController.js
+    │
+    ├── routes/
+    │   ├── authRoutes.js
+    │   ├── userRoutes.js
+    │   ├── projectRoutes.js
+    │   ├── taskRoutes.js
+    │   └── analyticsRoutes.js
+    │
+    ├── middlewares/
+    │   ├── authMiddleware.js
+    │   ├── rbacMiddleware.js
+    │   ├── validateMiddleware.js
+    │   ├── loggerMiddleware.js
+    │   └── errorMiddleware.js
+    │
+    ├── events/
+    │   └── appEmitter.js
+    │
+    ├── sockets/
+    │   └── socketHandler.js
+    │
+    ├── utils/
+    │   ├── appError.js
+    │   └── tokenHelper.js
+    │
+    └── public/
+        ├── index.html
+        ├── app.js
+        └── style.css
 ```
 
 ---
 
-## ⚙️ Step-by-Step Installation & Setup Guide
+## ⚙️ Installation and Setup
 
-### 1. Prerequisites Check
-Ensure that **Node.js** and **MongoDB** are installed and running on your system:
+Follow these steps to run CollabFlow on your local machine.
+
+### 1. Prerequisites
+
+Install the following software:
+
+- [Node.js](https://nodejs.org/) — Version 18 or above.
+- [MongoDB Community Server](https://www.mongodb.com/try/download/community) or a MongoDB Atlas account.
+- [Visual Studio Code](https://code.visualstudio.com/) — Recommended code editor.
+- [Postman](https://www.postman.com/downloads/) — For API testing.
+
+Verify the installations:
+
 ```bash
-node -v      # Expected: v18.0.0 or higher
-npm -v       # Expected: v9.0.0 or higher
-mongod --version # Or verify MongoDB service is running
+node -v
+npm -v
+mongod --version
 ```
 
-### 2. Navigate to Project Directory
+### 2. Clone the Repository
+
 ```bash
-cd "d:\Web Dev Capstone"
+git clone YOUR_GITHUB_REPOSITORY_URL
 ```
 
-### 3. Verify Dependencies
-Dependencies are already installed. If running on a fresh computer, run:
+Navigate to the project folder:
+
+```bash
+cd CollabFlow
+```
+
+### 3. Install Dependencies
+
 ```bash
 npm install
 ```
 
-### 4. Review Environment File (`.env`)
-The `.env` file is pre-configured with default settings:
+### 4. Configure Environment Variables
+
+Create a `.env` file in the project root directory.
+
+Add the following configuration:
+
 ```env
 PORT=5000
 NODE_ENV=development
+
 MONGO_URI=mongodb://127.0.0.1:27017/collabflow_capstone
-JWT_ACCESS_SECRET=collabflow_super_secret_access_jwt_key_2026_anshuman
-JWT_REFRESH_SECRET=collabflow_super_secret_refresh_jwt_key_2026_anshuman
+
+JWT_ACCESS_SECRET=replace_with_a_strong_random_access_secret
+JWT_REFRESH_SECRET=replace_with_a_strong_random_refresh_secret
+
 JWT_ACCESS_EXPIRES_IN=15m
 JWT_REFRESH_EXPIRES_IN=7d
+
 STUDENT_NAME=Anshuman Jha
 STUDENT_ROLL=2501010110
 ```
 
-### 5. Seed Database with Sample Data
-Run the custom seeder to populate sample users, projects, and tasks:
+For MongoDB Atlas, replace `MONGO_URI` with your Atlas connection string.
+
+**Important:** Never commit your actual `.env` file, database credentials, or JWT secrets to GitHub. Add `.env` to `.gitignore` and commit only `.env.example` with placeholder values.
+
+### 5. Seed the Database
+
+Run the database seeder:
+
 ```bash
 npm run seed
 ```
 
+This command inserts the sample users, projects, and tasks into MongoDB.
+
+> **Warning:** The seeder may clear existing collections before inserting sample data. Do not run it against a production database or a database containing important personal data.
+
 ### 6. Start the Server
-- **Production Mode:**
-  ```bash
-  npm start
-  ```
-- **Development Mode (with auto-restart on file change):**
-  ```bash
-  npm run dev
-  ```
 
-Server will output:
-```
-====================================================
- CollabFlow Capstone Platform running on port 5000
- Student: Anshuman Jha | Roll No: 2501010110
- Environment: development
- Local URL: http://localhost:5000
- Health Check: http://localhost:5000/api/v1/health
-====================================================
+**Development mode:**
+
+```bash
+npm run dev
 ```
 
-### 7. Open the Web Application
-Open your web browser and navigate to:
-👉 **`http://localhost:5000`**
+**Production mode:**
+
+```bash
+npm start
+```
+
+After successful startup, the server should be available at:
+
+```text
+http://localhost:5000
+```
+
+Health check endpoint:
+
+```text
+http://localhost:5000/api/v1/health
+```
+
+### 7. Open the Web Dashboard
+
+Open your browser and visit:
+
+```text
+http://localhost:5000
+```
+
+The CollabFlow dashboard will be available after the server and database connection are running successfully.
 
 ---
 
-## 👥 Database Seeding & Default Credentials
+## 👥 Database Seeding and Demo Accounts
 
-When you run `npm run seed`, the database is populated with three ready-to-test accounts across all RBAC privilege levels:
+After running the seed command, the database is populated with sample users representing all three application roles.
 
-| User Role | Name | Email Address | Password | Permissions |
-| :--- | :--- | :--- | :--- | :--- |
-| 👑 **Admin** | Anshuman Jha | `anshuman@example.com` | `Password123!` | Full control: Delete projects, update user roles, create tasks |
-| 👔 **Manager** | Neha Sharma | `neha@example.com` | `Password123!` | Create projects, create tasks, assign members, view analytics |
-| 💻 **Developer** | Rahul Verma | `rahul@example.com` | `Password123!` | View tasks, update task status (`todo` -> `completed`), send chat |
+| Role | Name | Email | Password |
+|---|---|---|---|
+| 👑 Admin | Anshuman Jha | `anshuman@example.com` | `Password123!` |
+| 👔 Manager | Neha Sharma | `neha@example.com` | `Password123!` |
+| 💻 Developer | Rahul Verma | `rahul@example.com` | `Password123!` |
+
+### Role Permissions
+
+**Admin**
+- Access administrative functionality.
+- Manage user roles.
+- Delete projects.
+- Manage platform resources.
+
+**Manager**
+- Create and update projects.
+- Create and manage tasks.
+- Assign team members.
+- View analytics.
+
+**Developer**
+- View assigned tasks.
+- Update task status.
+- Participate in project chat.
+- Receive task notifications.
+
+> These are demonstration credentials for a local academic setup. Change or remove them before any public deployment.
 
 ---
 
-## 📡 Complete REST API Reference
+## 📡 REST API Documentation
 
-Every endpoint supports clean JSON input and output.
+CollabFlow exposes versioned REST API endpoints under:
 
-### 1. Health Check (Public)
-- **`GET /api/v1/health`**
-  - **Description:** Returns server uptime and student capstone metadata.
-  - **Response (200 OK):**
-    ```json
-    {
-      "status": "success",
-      "service": "CollabFlow API",
-      "uptime": "25 seconds",
-      "timestamp": "2026-11-21T07:30:00.000Z",
-      "student": {
-        "name": "Anshuman Jha",
-        "rollNo": "2501010110",
-        "course": "Web Development Capstone"
+```text
+/api/v1
+```
+
+The API uses JSON for request and response data.
+
+### HTTP Methods Used
+
+| HTTP Method | Purpose |
+|---|---|
+| GET | Retrieve resources |
+| POST | Create resources |
+| PUT | Update resources |
+| PATCH | Partially update resources |
+| DELETE | Remove resources |
+
+### 1. Health Check
+
+**Endpoint:**
+
+```http
+GET /api/v1/health
+```
+
+**Access:** Public
+
+**Description:** Checks whether the server is running and returns application information.
+
+**Example Response:**
+
+```json
+{
+  "status": "success",
+  "service": "CollabFlow API",
+  "uptime": "25 seconds",
+  "timestamp": "2026-11-21T07:30:00.000Z",
+  "student": {
+    "name": "Anshuman Jha",
+    "rollNo": "2501010110",
+    "course": "Web Development Capstone"
+  }
+}
+```
+
+### 2. Authentication Endpoints
+
+Base path:
+
+```text
+/api/v1/auth
+```
+
+#### Register a User
+
+```http
+POST /api/v1/auth/register
+```
+
+**Request Body:**
+
+```json
+{
+  "name": "Saurabh Kumar",
+  "email": "saurabh@example.com",
+  "password": "Password123!",
+  "role": "developer"
+}
+```
+
+**Expected Response:** `201 Created`
+
+Creates a new user account and returns authentication tokens.
+
+#### User Login
+
+```http
+POST /api/v1/auth/login
+```
+
+**Request Body:**
+
+```json
+{
+  "email": "anshuman@example.com",
+  "password": "Password123!"
+}
+```
+
+**Expected Response:** `200 OK`
+
+Returns the access token and refresh token.
+
+#### Refresh Token
+
+```http
+POST /api/v1/auth/refresh
+```
+
+**Request Body:**
+
+```json
+{
+  "refreshToken": "YOUR_REFRESH_TOKEN"
+}
+```
+
+**Expected Response:** `200 OK`
+
+Validates the refresh token and issues a new access token. Refresh-token rotation should follow the implementation in the authentication controller.
+
+#### Get Current User
+
+```http
+GET /api/v1/auth/me
+```
+
+**Access:** Protected
+
+**Required Header:**
+
+```http
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+**Expected Response:** `200 OK`
+
+Returns the authenticated user's profile.
+
+### 3. Project Management Endpoints
+
+Base path:
+
+```text
+/api/v1/projects
+```
+
+| Method | Endpoint | Access | Description |
+|---|---|---|---|
+| GET | `/api/v1/projects` | Authenticated | Get all projects |
+| POST | `/api/v1/projects` | Admin, Manager | Create a project |
+| PUT | `/api/v1/projects/:id` | Admin, Manager | Update a project |
+| DELETE | `/api/v1/projects/:id` | Admin | Delete a project |
+
+#### Create Project
+
+```http
+POST /api/v1/projects
+```
+
+**Request Body:**
+
+```json
+{
+  "name": "AI Collaboration Module",
+  "description": "Smart agent integration in project workspace",
+  "status": "planning"
+}
+```
+
+**Expected Response:** `201 Created`
+
+Creates a new project in MongoDB.
+
+#### Update Project
+
+```http
+PUT /api/v1/projects/PROJECT_ID
+```
+
+**Request Body:**
+
+```json
+{
+  "name": "AI Collaboration Module",
+  "description": "Updated project description",
+  "status": "in-progress"
+}
+```
+
+#### Delete Project
+
+```http
+DELETE /api/v1/projects/PROJECT_ID
+```
+
+**Access:** Admin only
+
+**Expected Response:** `200 OK`
+
+### 4. Task Management Endpoints
+
+Base path:
+
+```text
+/api/v1/tasks
+```
+
+| Method | Endpoint | Access | Description |
+|---|---|---|---|
+| GET | `/api/v1/tasks` | Authenticated | Get tasks with filters |
+| GET | `/api/v1/tasks/:id` | Authenticated | Get a specific task |
+| POST | `/api/v1/tasks` | Authenticated | Create a task |
+| PUT | `/api/v1/tasks/:id` | Authenticated | Update a task |
+| DELETE | `/api/v1/tasks/:id` | Admin, Manager | Delete a task |
+
+#### Get Tasks with Filters
+
+```http
+GET /api/v1/tasks
+```
+
+**Supported Query Parameters:**
+
+| Parameter | Description | Example |
+|---|---|---|
+| `page` | Page number | `page=1` |
+| `limit` | Records per page | `limit=10` |
+| `status` | Filter by task status | `status=todo` |
+| `priority` | Filter by priority | `priority=high` |
+| `search` | Search by title or description | `search=website` |
+| `sort` | Sort records | `sort=-createdAt` |
+
+**Example Request:**
+
+```http
+GET /api/v1/tasks?page=1&limit=10&status=todo&priority=high&sort=-createdAt
+```
+
+**Example Response:**
+
+```json
+{
+  "status": "success",
+  "results": 4,
+  "pagination": {
+    "total": 4,
+    "page": 1,
+    "pages": 1,
+    "limit": 10
+  },
+  "data": {
+    "tasks": []
+  }
+}
+```
+
+#### Get a Single Task
+
+```http
+GET /api/v1/tasks/TASK_ID
+```
+
+**Access:** Authenticated
+
+#### Create Task
+
+```http
+POST /api/v1/tasks
+```
+
+**Request Body:**
+
+```json
+{
+  "title": "Build WebSockets Chat Layer",
+  "description": "Implement real-time project communication",
+  "project": "PROJECT_ID",
+  "priority": "high",
+  "status": "todo"
+}
+```
+
+**Expected Response:** `201 Created`
+
+Creates a task and can trigger an internal EventEmitter event and Socket.IO notification.
+
+#### Update Task
+
+```http
+PUT /api/v1/tasks/TASK_ID
+```
+
+**Request Body:**
+
+```json
+{
+  "status": "completed",
+  "priority": "urgent"
+}
+```
+
+**Expected Response:** `200 OK`
+
+Updates the task and can notify connected project members.
+
+#### Delete Task
+
+```http
+DELETE /api/v1/tasks/TASK_ID
+```
+
+**Access:** Admin, Manager
+
+**Expected Response:** `200 OK`
+
+### 5. Analytics Endpoint
+
+```http
+GET /api/v1/analytics/tasks
+```
+
+**Access:** Authenticated
+
+**Description:** Returns task analytics generated through MongoDB aggregation pipelines.
+
+Aggregation stages used include:
+
+- `$match`
+- `$group`
+- `$sort`
+- `$project`
+- `$lookup`
+
+**Example Response:**
+
+```json
+{
+  "status": "success",
+  "data": {
+    "summary": {
+      "totalTasks": 4,
+      "totalProjects": 2
+    },
+    "statusDistribution": [
+      {
+        "status": "completed",
+        "count": 1
+      },
+      {
+        "status": "in-progress",
+        "count": 1
+      },
+      {
+        "status": "todo",
+        "count": 1
+      },
+      {
+        "status": "review",
+        "count": 1
       }
-    }
-    ```
-
----
-
-### 2. Authentication Endpoints (`/api/v1/auth`)
-
-#### `POST /api/v1/auth/register` (Public)
-- **Request Body:**
-  ```json
-  {
-    "name": "Saurabh Kumar",
-    "email": "saurabh@example.com",
-    "password": "Password123!",
-    "role": "developer"
+    ],
+    "priorityDistribution": [
+      {
+        "priority": "high",
+        "count": 2
+      },
+      {
+        "priority": "urgent",
+        "count": 1
+      },
+      {
+        "priority": "medium",
+        "count": 1
+      }
+    ]
   }
-  ```
-- **Response (201 Created):**
-  ```json
-  {
-    "status": "success",
-    "message": "User registered successfully",
-    "data": {
-      "user": { "id": "...", "name": "Saurabh Kumar", "email": "saurabh@example.com", "role": "developer" },
-      "tokens": { "accessToken": "...", "refreshToken": "..." }
-    }
-  }
-  ```
-
-#### `POST /api/v1/auth/login` (Public)
-- **Request Body:**
-  ```json
-  {
-    "email": "anshuman@example.com",
-    "password": "Password123!"
-  }
-  ```
-- **Response (200 OK):** Returns new `accessToken` (15m) and `refreshToken` (7d).
-
-#### `POST /api/v1/auth/refresh` (Public)
-- **Request Body:**
-  ```json
-  {
-    "refreshToken": "<your_refresh_token>"
-  }
-  ```
-- **Response (200 OK):** Returns a fresh `accessToken`.
-
-#### `GET /api/v1/auth/me` (Protected — requires `Bearer <token>`)
-- **Headers:** `Authorization: Bearer <accessToken>`
-- **Response (200 OK):** Returns profile of logged-in user.
-
----
-
-### 3. Project Management Endpoints (`/api/v1/projects`)
-
-#### `GET /api/v1/projects` (Protected)
-- **Headers:** `Authorization: Bearer <accessToken>`
-- **Response (200 OK):** List of all projects with populated member and creator details.
-
-#### `POST /api/v1/projects` (Protected — Admin & Manager only)
-- **Request Body:**
-  ```json
-  {
-    "name": "AI Collaboration Module",
-    "description": "Smart agent integration in project workspace",
-    "status": "planning"
-  }
-  ```
-- **Response (201 Created):** Newly created project document.
-
-#### `PUT /api/v1/projects/:id` (Protected — Admin & Manager only)
-- **Request Body:** Updates project title, description, or status (`planning`, `in-progress`, `completed`, `on-hold`).
-- **Response (200 OK):** Updated project document.
-
-#### `DELETE /api/v1/projects/:id` (Protected — Admin only)
-- **Response (200 OK):** `{"status": "success", "message": "Project deleted successfully"}`
-
----
-
-### 4. Task Management Endpoints (`/api/v1/tasks`)
-
-#### `GET /api/v1/tasks` (Protected — Advanced Queries)
-- **Query Parameters:**
-  - `page`: Page number (default: `1`)
-  - `limit`: Items per page (default: `10`)
-  - `status`: Filter by status (`todo`, `in-progress`, `review`, `completed`)
-  - `priority`: Filter by priority (`low`, `medium`, `high`, `urgent`)
-  - `search`: Keyword search matching task title or description using case-insensitive regex
-  - `sort`: Field sorting (e.g. `-createdAt`, `title`)
-- **Response (200 OK):**
-  ```json
-  {
-    "status": "success",
-    "results": 4,
-    "pagination": { "total": 4, "page": 1, "pages": 1, "limit": 10 },
-    "data": { "tasks": [ ... ] }
-  }
-  ```
-
-#### `POST /api/v1/tasks` (Protected)
-- **Request Body:**
-  ```json
-  {
-    "title": "Build WebSockets Chat Layer",
-    "description": "Multiplex Socket.IO over HTTP listener",
-    "project": "<project_id>",
-    "priority": "high",
-    "status": "todo"
-  }
-  ```
-- **Response (201 Created):** Created task + Triggers `task:created` on EventEmitter + Emits Socket.IO notification.
-
-#### `PUT /api/v1/tasks/:id` (Protected)
-- **Request Body:**
-  ```json
-  {
-    "status": "completed",
-    "priority": "urgent"
-  }
-  ```
-- **Response (200 OK):** Triggers `task:status_changed` event and broadcasts live update to project room.
-
-#### `DELETE /api/v1/tasks/:id` (Protected — Admin & Manager only)
-- **Response (200 OK):** Permanently removes task from MongoDB.
-
----
-
-### 5. Analytics Aggregation Endpoint (`/api/v1/analytics/tasks`)
-
-#### `GET /api/v1/analytics/tasks` (Protected)
-- **Description:** Demonstrates MongoDB Aggregation Pipeline using `$match`, `$group`, `$sort`, and `$project`.
-- **Response (200 OK):**
-  ```json
-  {
-    "status": "success",
-    "data": {
-      "summary": { "totalTasks": 4, "totalProjects": 2 },
-      "statusDistribution": [
-        { "status": "completed", "count": 1 },
-        { "status": "in-progress", "count": 1 },
-        { "status": "todo", "count": 1 },
-        { "status": "review", "count": 1 }
-      ],
-      "priorityDistribution": [
-        { "priority": "high", "count": 2 },
-        { "priority": "urgent", "count": 1 },
-        { "priority": "medium", "count": 1 }
-      ]
-    }
-  }
-  ```
-
----
-
-### 6. User Management Endpoint (`/api/v1/users`)
-
-#### `PATCH /api/v1/users/:id/role` (Protected — Admin only)
-- **Request Body:** `{"role": "manager"}`
-- **Response (200 OK):** Updates user role in database enforcing RBAC.
-
----
-
-## ⚡ Real-Time Collaboration & WebSockets
-
-CollabFlow pairs **Node.js EventEmitter (Lecture 38)** with **Socket.IO (Lectures 39 & 40)**:
-
-```
-┌────────────────────────────────────────────────────────┐
-│               Task Controller Action                  │
-│       (e.g., Task Created or Status Changed)           │
-└──────────────────────────┬─────────────────────────────┘
-                           │
-             ┌─────────────┴─────────────┐
-             ▼                           ▼
-   [Node.js EventEmitter]         [Socket.IO Server]
-   src/events/appEmitter.js      src/sockets/socketHandler.js
-             │                           │
-             ▼                           ▼
-  Asynchronous Database Log      Real-Time Broadcast
-    (src/models/ActivityLog)    (io.to("project:<id>").emit)
-                                         │
-                                         ▼
-                               [Connected Web Clients]
-                                Instant UI Board Refresh
+}
 ```
 
-### Supported Socket Events:
-1. `join:room` — Joins a dedicated project collaboration room.
-2. `chat:message` — Sends message to room members.
-3. `chat:broadcast` — Receives real-time message bubble.
-4. `notification` — Triggered automatically whenever tasks are created or updated.
+### 6. User Management Endpoint
+
+#### Update User Role
+
+```http
+PATCH /api/v1/users/USER_ID/role
+```
+
+**Access:** Admin only
+
+**Request Body:**
+
+```json
+{
+  "role": "manager"
+}
+```
+
+**Expected Response:** `200 OK`
+
+Updates a user's role according to the application's RBAC rules.
 
 ---
 
-## 🛠️ CLI Utility & System Diagnostics (`cli.js`)
+## ⚡ Real-Time Collaboration
 
-Demonstrating **Lectures 4, 5, 6, and 7**, the project contains an independent Command-Line Interface executable via Node:
+CollabFlow uses **Node.js EventEmitter and Socket.IO** to support internal event handling and real-time communication.
 
-### 1. System Diagnostics (`--info`)
+### Event-Driven Workflow
+
+```text
+                  Task Controller
+                        |
+             Task Created / Updated
+                        |
+              +---------+---------+
+              |                   |
+              v                   v
+       Node EventEmitter      Socket.IO Server
+              |                   |
+              v                   v
+       Activity Logging       Real-Time Events
+              |                   |
+              v                   v
+        MongoDB Logs         Project Room Clients
+                                  |
+                                  v
+                           Live Dashboard Update
+```
+
+### 1. Node.js EventEmitter
+
+EventEmitter is used for internal application events.
+
+Example event names:
+
+```text
+task:created
+task:status_changed
+```
+
+When an event occurs, registered listeners can perform operations such as saving activity records in MongoDB.
+
+### 2. Socket.IO
+
+Socket.IO enables real-time communication between the server and connected clients.
+
+**Supported Events:**
+
+| Event | Purpose |
+|---|---|
+| `join:room` | Join a project collaboration room |
+| `chat:message` | Send a message to a room |
+| `chat:broadcast` | Receive messages from other room members |
+| `notification` | Receive task-related notifications |
+| `typing` | Indicate that a user is typing |
+
+### Benefits
+
+- Instant chat communication.
+- Real-time project updates.
+- Reduced need for manual page refreshes.
+- Project-based communication rooms.
+- Improved team collaboration.
+
+---
+
+## 🛠️ CLI Utility
+
+CollabFlow includes a custom command-line utility named `cli.js`.
+
+It demonstrates the use of Node.js core modules such as:
+
+- `fs`
+- `path`
+- `os`
+- `http`
+- `process`
+
+### 1. System Diagnostics
+
+Run:
+
 ```bash
 npm run cli
 ```
-**Output:**
-- Operating System & Kernel version via `os.type()` & `os.release()`
-- CPU cores count via `os.cpus().length`
-- Real-time Free and Total RAM via `os.freemem()`
-- Current Node.js runtime version and Process ID (`process.pid`)
 
-### 2. Database Seeding (`--seed`)
+The diagnostic utility can display:
+
+- Operating system information using `os.type()`.
+- Kernel version using `os.release()`.
+- CPU core count using `os.cpus().length`.
+- Free RAM using `os.freemem()`.
+- Total RAM using `os.totalmem()`.
+- Node.js version.
+- Process ID using `process.pid`.
+
+### 2. Database Seeding
+
+Run:
+
 ```bash
 npm run seed
 ```
-Clears existing collections and inserts clean default datasets with hashed passwords.
 
-### 3. Server HTTP Probe (`--ping`)
+This command inserts sample users, projects, and tasks into the database.
+
+### 3. Server HTTP Probe
+
+Run:
+
 ```bash
 node cli.js --ping
 ```
-Uses Node's native `http.get` core module to probe `http://localhost:5000/api/v1/health` and verify server response without third-party dependencies.
+
+The utility uses Node.js `http.get()` to check the health endpoint:
+
+```text
+http://localhost:5000/api/v1/health
+```
+
+This helps verify whether the backend server is responding.
 
 ---
 
-## 🧪 Automated API Testing Suite (`tests/api.test.js`)
+## 🧪 Automated API Testing
 
-Demonstrating **Lecture 8 (API Testing & Debugging)**, the project features a comprehensive test suite using Node's built-in Test Runner and **Supertest**.
+CollabFlow includes an automated API testing suite located at:
 
-Run the test suite:
+```text
+tests/api.test.js
+```
+
+The test suite uses:
+
+- Node.js built-in Test Runner.
+- Node.js Assert module.
+- Supertest.
+
+### Run Tests
+
 ```bash
 npm test
 ```
 
-### Test Coverage (15 Assertions across all HTTP Verbs):
-1. `GET /api/v1/health` — Returns 200 and student metadata.
-2. `POST /api/v1/auth/login` — Verifies valid credentials and issues JWT Access & Refresh tokens.
-3. `POST /api/v1/auth/register` — Creates new user with hashed password.
-4. `POST /api/v1/auth/refresh` — Validates refresh token and returns fresh access token.
-5. `POST /api/v1/projects` — Creates new project in MongoDB.
-6. `GET /api/v1/projects` — Retrieves project list with populated references.
-7. `POST /api/v1/tasks` — Creates task, triggers EventEmitter, and emits socket event.
-8. `GET /api/v1/tasks/:id` — Fetches single task by ObjectId.
-9. `PUT /api/v1/tasks/:id` — Updates task status and priority.
-10. `PUT /api/v1/projects/:id` — Updates project status.
-11. `PATCH /api/v1/users/:id/role` — Demonstrates RBAC role modification.
-12. `GET /api/v1/analytics/tasks` — Validates MongoDB Aggregation Pipeline output.
-13. `DELETE /api/v1/tasks/:id` — Permanently removes task and verifies 404 on subsequent get.
-14. `DELETE /api/v1/projects/:id` — Removes project.
+### Test Coverage
 
-**Execution Result:**
+The test suite is designed to test the following operations:
+
+| No. | Test Case | HTTP Method |
+|---|---|---|
+| 1 | Health check | GET |
+| 2 | User login | POST |
+| 3 | User registration | POST |
+| 4 | Refresh token | POST |
+| 5 | Create project | POST |
+| 6 | Retrieve projects | GET |
+| 7 | Create task | POST |
+| 8 | Retrieve task by ID | GET |
+| 9 | Update task | PUT |
+| 10 | Update project | PUT |
+| 11 | Update user role | PATCH |
+| 12 | Retrieve task analytics | GET |
+| 13 | Delete task | DELETE |
+| 14 | Delete project | DELETE |
+
+The test suite also checks authentication, authorization, database-backed operations, and expected HTTP responses where configured.
+
+**Expected Test Summary (as reported for the project):**
+
+```text
+✔ CollabFlow Full HTTP Methods Test Suite
+
+ℹ tests 15
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
 ```
-✔ CollabFlow Full HTTP Methods Test Suite (GET, POST, PUT, PATCH, DELETE) (502ms)
-ℹ tests 15 | pass 15 | fail 0 | cancelled 0
-```
+
+> Run `npm test` in your local environment to verify the actual test count and results.
 
 ---
 
-## 🖥️ Web Dashboard & User Interface Walkthrough
+## 🖥️ Web Dashboard
 
-When you open **`http://localhost:5000`**, you are presented with:
+The CollabFlow web dashboard is served through Express static files.
 
-1. **Header Banner:** Prominently displays:
-   - Student Name: **Anshuman Jha**
-   - Roll No: **2501010110**
-   - Course: **Web Development Capstone**
-2. **Tab 1: Syllabus Matrix (Lectures 1 - 40):** A complete visual syllabus checklist mapping every lecture to code with checkmarks.
-3. **Tab 2: Project & Tasks (CRUD Board):**
-   - Search bar with live debounced regex query
-   - Filter dropdowns by status and priority
-   - Sorting options
-   - Inline status updater dropdown
-   - Delete task button
-   - "+ Create New Task" modal
-4. **Tab 3: MongoDB Analytics:**
-   - Real-time KPI cards (Total Projects, Total Tasks, Completed Tasks)
-   - Status Distribution bars computed via `$group`
-   - Priority Distribution breakdown
-5. **Tab 4: Real-Time Collab (Socket.IO):**
-   - Project chat room selector
-   - Real-time message stream with sender roles
-   - Live activity notification feed triggered by background events
-6. **Quick 1-Click Login:**
-   - Instant 1-click switch between **Admin (Anshuman Jha)**, **Manager (Neha)**, and **Developer (Rahul)** to immediately demo RBAC privilege enforcement to your professor!
+Open the application at:
+
+```text
+http://localhost:5000
+```
+
+The dashboard provides the following sections.
+
+### 1. Project Header
+
+Displays academic project information:
+
+- Student Name: Anshuman Jha
+- Roll Number: 2501010110
+- Course: Web Development Capstone
+
+### 2. Syllabus Matrix
+
+- Displays the course syllabus from Lecture 1 to Lecture 40.
+- Groups topics by academic unit.
+- Shows the mapping between lectures and project source files.
+
+### 3. Project and Task Management
+
+- Task listing and management.
+- Search by title or description.
+- Status and priority filters.
+- Sorting and pagination.
+- Inline task status updates.
+- Task creation modal.
+- Task deletion controls.
+
+### 4. MongoDB Analytics
+
+Displays key application statistics:
+
+- Total projects.
+- Total tasks.
+- Completed tasks.
+- Status distribution.
+- Priority distribution.
+
+The analytics information is generated through MongoDB aggregation queries.
+
+### 5. Real-Time Collaboration
+
+- Project chat room selection.
+- Live message updates.
+- Typing indicators.
+- Task activity notifications.
+
+### 6. Demo Login and RBAC
+
+The dashboard provides demonstration access for the three sample roles:
+
+- Admin — Anshuman Jha
+- Manager — Neha Sharma
+- Developer — Rahul Verma
+
+This helps demonstrate how application permissions differ according to user roles.
 
 ---
 
+## 📜 Viva Voce Preparation
 
-## 📜 Conclusion & Acknowledgements
+The following questions can help explain the main concepts used in CollabFlow during a project demonstration.
 
-This project was engineered to deliver a complete, robust, and extensible web application that satisfies every requirement of the academic curriculum.
+| Question | Answer |
+|---|---|
+| What is Node.js? | Node.js is a JavaScript runtime environment used to execute JavaScript outside the browser. |
+| What is Express.js? | Express.js is a Node.js framework used to build web applications and REST APIs. |
+| What is MongoDB? | MongoDB is a NoSQL database that stores data in flexible BSON documents. |
+| What is Mongoose? | Mongoose is an ODM library used to define schemas, validate data, and interact with MongoDB. |
+| What is MVC? | MVC stands for Model-View-Controller. It separates data, user interface, and application logic. |
+| What is middleware? | Middleware is a function that executes during the request-response cycle. |
+| What is REST API? | A REST API allows applications to communicate through HTTP methods and resource-based URLs. |
+| What is JWT? | JSON Web Token is a token format used to transfer signed information between parties. |
+| What is authentication? | Authentication verifies the identity of a user. |
+| What is authorization? | Authorization determines what an authenticated user is allowed to access. |
+| What is bcrypt? | bcrypt is a password-hashing algorithm used to securely store passwords. |
+| What is RBAC? | Role-Based Access Control assigns permissions according to user roles. |
+| What is EventEmitter? | EventEmitter is a Node.js class used to create and handle custom events. |
+| What is WebSocket? | WebSocket is a communication protocol that supports persistent, bidirectional communication. |
+| What is Socket.IO? | Socket.IO is a library that provides real-time, event-based communication between clients and servers. |
+| What is aggregation in MongoDB? | Aggregation processes documents through stages to calculate and transform data. |
+| What is pagination? | Pagination divides a large set of records into smaller pages. |
+| What is an index? | An index improves the efficiency of database queries. |
 
-- **Developer:** Anshuman Jha
-- **Roll Number:** 2501010110
-- **Submission Date:** November 2026
-#   w e b d e v - I I I - C a p s t o n e  
- 
+---
+
+## 📌 Conclusion
+
+CollabFlow demonstrates the practical application of backend and full-stack web development concepts through a project and task management platform.
+
+The project brings together several important technologies and concepts:
+
+- Node.js and Express.js backend development.
+- MVC architecture and REST API design.
+- MongoDB database operations and Mongoose ODM.
+- Authentication using JWT and password hashing using bcryptjs.
+- Role-Based Access Control.
+- MongoDB aggregation and query optimization.
+- Node.js EventEmitter and Socket.IO real-time communication.
+- CLI utilities and automated API testing.
+- HTML, CSS, and JavaScript-based dashboard development.
+
+The project is designed to provide a practical understanding of how different backend technologies work together to build a collaborative web application.
+
+---
+
+## 🙏 Acknowledgements
+
+**Developed by:** Anshuman Jha  
+**Roll Number:** 2501010110  
+**Course:** Web Development Backend & Full-Stack Capstone  
+**Academic Year:** 2026  
+**Submission Period:** November 2026
+
+Thank you for visiting the CollabFlow project repository!
+
+⭐ If you find this project useful, consider giving the repository a star.
