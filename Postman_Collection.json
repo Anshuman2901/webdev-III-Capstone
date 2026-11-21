@@ -1,0 +1,262 @@
+{
+  "info": {
+    "name": "CollabFlow API - Capstone Collection (CRUD & Auth)",
+    "description": "Comprehensive Postman Collection with GET, POST, PUT, PATCH, and DELETE requests for CollabFlow Capstone Project by Anshuman Jha (Roll No: 2501010110)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. GET - Health Check (Lecture 7, 8)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "health"]
+        }
+      }
+    },
+    {
+      "name": "2. POST - Login Admin (Lecture 31, 34, 35)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"anshuman@example.com\",\n  \"password\": \"Password123!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "3. POST - Register New User (Lecture 31, 33)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Saurabh Kumar\",\n  \"email\": \"saurabh@example.com\",\n  \"password\": \"Password123!\",\n  \"role\": \"developer\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "register"]
+        }
+      }
+    },
+    {
+      "name": "4. POST - Refresh JWT Token (Lecture 35)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/refresh",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "refresh"]
+        }
+      }
+    },
+    {
+      "name": "5. GET - Current User Profile (Lecture 36)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/auth/me",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "auth", "me"]
+        }
+      }
+    },
+    {
+      "name": "6. GET - All Projects (Lecture 14, 21, 24)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/projects",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "projects"]
+        }
+      }
+    },
+    {
+      "name": "7. POST - Create New Project (Lecture 10, 14, 21)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"AI Chatbot Integration\",\n  \"description\": \"Integrate AI LLM assistant in project workspace\",\n  \"status\": \"planning\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/projects",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "projects"]
+        }
+      }
+    },
+    {
+      "name": "8. PUT - Update Project by ID (Lecture 10, 11, 21)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"AI Chatbot Integration (Phase 2)\",\n  \"status\": \"in-progress\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/projects/{{projectId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "projects", "{{projectId}}"]
+        }
+      }
+    },
+    {
+      "name": "9. GET - All Tasks with Filters, Search & Pagination (Lecture 22)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/tasks?page=1&limit=10&status=in-progress&search=",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "tasks"],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "limit", "value": "10" },
+            { "key": "status", "value": "in-progress" },
+            { "key": "search", "value": "" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "10. POST - Create Task (Lecture 10, 26, 38, 40)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Implement Real-Time Socket.IO Channels\",\n  \"description\": \"Enable WebSocket connection on HTTP server\",\n  \"project\": \"{{projectId}}\",\n  \"priority\": \"high\",\n  \"status\": \"todo\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/tasks",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "tasks"]
+        }
+      }
+    },
+    {
+      "name": "11. GET - Single Task by ID (Lecture 11, 21)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/tasks/{{taskId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "tasks", "{{taskId}}"]
+        }
+      }
+    },
+    {
+      "name": "12. PUT - Update Task (Change Status/Priority) (Lecture 10, 11, 21, 38)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"completed\",\n  \"priority\": \"urgent\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/tasks/{{taskId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "tasks", "{{taskId}}"]
+        }
+      }
+    },
+    {
+      "name": "13. DELETE - Delete Task by ID (Lecture 10, 14, 21, 37)",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/tasks/{{taskId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "tasks", "{{taskId}}"]
+        }
+      }
+    },
+    {
+      "name": "14. PATCH - Update User Role (RBAC - Admin Only) (Lecture 37)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"role\": \"manager\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/users/{{userId}}/role",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "users", "{{userId}}", "role"]
+        }
+      }
+    },
+    {
+      "name": "15. GET - Task Analytics (Aggregation Pipeline) (Lecture 23)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/analytics/tasks",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "analytics", "tasks"]
+        }
+      }
+    },
+    {
+      "name": "16. DELETE - Delete Project by ID (Admin Only) (Lecture 10, 37)",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/projects/{{projectId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "projects", "{{projectId}}"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "accessToken", "value": "" },
+    { "key": "refreshToken", "value": "" },
+    { "key": "projectId", "value": "" },
+    { "key": "taskId", "value": "" },
+    { "key": "userId", "value": "" }
+  ]
+}

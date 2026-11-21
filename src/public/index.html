@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CollabFlow | Web Dev Capstone Project</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Socket.IO client library -->
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <!-- Header with Student Metadata -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-logo">⚡</div>
+        <div>
+          <h1>CollabFlow</h1>
+          <p class="subtitle">Enterprise Real-Time Collaboration & Project Management Suite</p>
+        </div>
+      </div>
+
+      <div class="student-badge">
+        <div class="badge-title">🎓 Web Development Capstone</div>
+        <div class="student-details">
+          <span><strong>Student:</strong> Anshuman Jha</span>
+          <span class="divider">|</span>
+          <span><strong>Roll No:</strong> 2501010110</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <div class="nav-links">
+        <button class="nav-tab active" data-tab="syllabus">📘 Syllabus Matrix (L1 - L40)</button>
+        <button class="nav-tab" data-tab="tasks">📋 Project & Tasks (CRUD)</button>
+        <button class="nav-tab" data-tab="analytics">📊 MongoDB Analytics</button>
+        <button class="nav-tab" data-tab="chat">💬 Real-Time Collab (Socket.IO)</button>
+      </div>
+      <div class="user-session" id="userSession">
+        <span id="currentUserRole" class="role-badge guest">Guest</span>
+        <span id="currentUserName">Not Logged In</span>
+        <button id="authActionBtn" class="btn btn-sm btn-primary">Login</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="main-container">
+    
+    <!-- SECTION 1: SYLLABUS MATRIX (Lectures 1 to 40) -->
+    <section id="syllabusSection" class="tab-pane active">
+      <div class="section-card">
+        <div class="card-header">
+          <h2>📚 Complete Course Syllabus & Implementation Mapping</h2>
+          <span class="status-pill status-complete">40 / 40 Lectures Implemented</span>
+        </div>
+        <p class="section-desc">
+          Every single backend concept taught from <strong>Lecture 1 to Lecture 40</strong> is natively implemented with production-grade code in this Capstone project.
+        </p>
+
+        <div class="units-grid">
+          <!-- Unit 1 -->
+          <div class="unit-box">
+            <h3>Unit 1: Node.js & Core Backend</h3>
+            <ul class="lecture-list">
+              <li><span class="check">✔</span> <strong>L1:</strong> Intro to Backend (Server Architecture, REST)</li>
+              <li><span class="check">✔</span> <strong>L2:</strong> HTTP Fundamentals (Methods, Status Codes)</li>
+              <li><span class="check">✔</span> <strong>L3:</strong> Node.js Runtime & NPM (Scripts, Dependencies)</li>
+              <li><span class="check">✔</span> <strong>L4:</strong> Node.js Modules (CommonJS, Scopes)</li>
+              <li><span class="check">✔</span> <strong>L5:</strong> Core Modules (fs, path, os, http)</li>
+              <li><span class="check">✔</span> <strong>L6:</strong> Process Object & CLI (process.argv, flags in <code>cli.js</code>)</li>
+              <li><span class="check">✔</span> <strong>L7:</strong> HTTP Server Development (http.createServer in <code>server.js</code>)</li>
+              <li><span class="check">✔</span> <strong>L8:</strong> API Testing & Debugging (Supertest in <code>tests/api.test.js</code>)</li>
+            </ul>
+          </div>
+
+          <!-- Unit 2 -->
+          <div class="unit-box">
+            <h3>Unit 2: Express.js & MVC</h3>
+            <ul class="lecture-list">
+              <li><span class="check">✔</span> <strong>L9:</strong> Intro to Express.js (App, Routes, Middlewares)</li>
+              <li><span class="check">✔</span> <strong>L10:</strong> CRUD Fundamentals (POST, GET, PUT, DELETE)</li>
+              <li><span class="check">✔</span> <strong>L11:</strong> Req & Res Handling (req.params, query, body)</li>
+              <li><span class="check">✔</span> <strong>L12:</strong> MVC Architecture (Models, Views, Controllers)</li>
+              <li><span class="check">✔</span> <strong>L13:</strong> Controllers & Business Logic (Thin routes, clean logic)</li>
+              <li><span class="check">✔</span> <strong>L14:</strong> CRUD Operations using MVC</li>
+              <li><span class="check">✔</span> <strong>L15:</strong> Express Routing & REST APIs (Modular Routers)</li>
+              <li><span class="check">✔</span> <strong>L16:</strong> Middleware Basics (Custom logger, parser)</li>
+              <li><span class="check">✔</span> <strong>L17:</strong> Middleware Chaining (Auth -> RBAC -> Validation)</li>
+              <li><span class="check">✔</span> <strong>L18:</strong> Centralized Error Handling (AppError & 404 handler)</li>
+            </ul>
+          </div>
+
+          <!-- Unit 3 -->
+          <div class="unit-box">
+            <h3>Unit 3: Database & Mongoose ODM</h3>
+            <ul class="lecture-list">
+              <li><span class="check">✔</span> <strong>L19:</strong> Databases (SQL vs NoSQL document architecture)</li>
+              <li><span class="check">✔</span> <strong>L20:</strong> MongoDB Basics & Local/Atlas Config</li>
+              <li><span class="check">✔</span> <strong>L21:</strong> MongoDB CRUD Operations (find, create, update, delete)</li>
+              <li><span class="check">✔</span> <strong>L22:</strong> Query Operations ($regex, pagination, sort, filter)</li>
+              <li><span class="check">✔</span> <strong>L23:</strong> Aggregation Pipeline & Indexing ($group, $match, indexes)</li>
+              <li><span class="check">✔</span> <strong>L24:</strong> Data Modelling & Relationships (refs & populate)</li>
+              <li><span class="check">✔</span> <strong>L25:</strong> Mongoose ODM + Schema & Model Design</li>
+              <li><span class="check">✔</span> <strong>L26:</strong> Data Validation using Mongoose (Schema validators)</li>
+              <li><span class="check">✔</span> <strong>L27:</strong> Connecting Node.js with MongoDB (mongoose.connect)</li>
+              <li><span class="check">✔</span> <strong>L28:</strong> Building REST APIs with Database Integration</li>
+            </ul>
+          </div>
+
+          <!-- Unit 4 -->
+          <div class="unit-box">
+            <h3>Unit 4: Advanced Security & Real-Time</h3>
+            <ul class="lecture-list">
+              <li><span class="check">✔</span> <strong>L29:</strong> Environment Variables (process.env)</li>
+              <li><span class="check">✔</span> <strong>L30:</strong> Configuration Management & dotenv (.env, env.js)</li>
+              <li><span class="check">✔</span> <strong>L31:</strong> Authentication (Registration & Login)</li>
+              <li><span class="check">✔</span> <strong>L32:</strong> Authorization Concepts (AuthN vs AuthZ)</li>
+              <li><span class="check">✔</span> <strong>L33:</strong> Password Hashing with bcrypt (Salt & Hash)</li>
+              <li><span class="check">✔</span> <strong>L34:</strong> JWT (Tokens, Signing & Verification)</li>
+              <li><span class="check">✔</span> <strong>L35:</strong> Access Tokens & Refresh Tokens (Dual-token flow)</li>
+              <li><span class="check">✔</span> <strong>L36:</strong> Protected Routes (authenticateJWT middleware)</li>
+              <li><span class="check">✔</span> <strong>L37:</strong> RBAC (Admin, Manager, Developer permission control)</li>
+              <li><span class="check">✔</span> <strong>L38:</strong> EventEmitter (Node.js events & background audit log)</li>
+              <li><span class="check">✔</span> <strong>L39:</strong> Web Sockets (Persistent bidirectional full-duplex)</li>
+              <li><span class="check">✔</span> <strong>L40:</strong> Socket.IO (Room chat & real-time live events)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cli-demo-box">
+          <h3>⚡ Quick Terminal CLI Commands:</h3>
+          <p>You can run our custom CLI tool directly in terminal:</p>
+          <code>npm run cli</code> <span>(Diagnostics)</span> &nbsp;|&nbsp; 
+          <code>npm run seed</code> <span>(Seed DB)</span> &nbsp;|&nbsp; 
+          <code>npm test</code> <span>(Run Automated Test Suite)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: AUTH MODAL / DRAWER -->
+    <div id="authModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" id="closeAuthModal">&times;</span>
+        <h2>🔐 User Authentication (Lectures 31 - 37)</h2>
+        <p class="modal-sub">Experience JWT Access/Refresh tokens & Role-Based Access Control</p>
+
+        <!-- Quick 1-click Presets -->
+        <div class="quick-login-box">
+          <label>Quick 1-Click Login As:</label>
+          <div class="quick-btn-group">
+            <button class="btn btn-outline" onclick="quickLogin('anshuman@example.com', 'Password123!')">
+              👑 Admin (Anshuman Jha)
+            </button>
+            <button class="btn btn-outline" onclick="quickLogin('neha@example.com', 'Password123!')">
+              👔 Manager (Neha)
+            </button>
+            <button class="btn btn-outline" onclick="quickLogin('rahul@example.com', 'Password123!')">
+              💻 Developer (Rahul)
+            </button>
+          </div>
+        </div>
+
+        <div class="auth-divider"><span>OR ENTER CREDENTIALS</span></div>
+
+        <!-- Custom Login/Register Form -->
+        <form id="loginForm">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="authEmail" class="form-control" placeholder="name@example.com" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="authPassword" class="form-control" placeholder="••••••••" required>
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-primary" id="submitLoginBtn">Sign In</button>
+            <button type="button" class="btn btn-secondary" id="toggleRegisterBtn">Register New Account</button>
+          </div>
+        </form>
+
+        <form id="registerForm" class="hidden">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="regName" class="form-control" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="regEmail" class="form-control" placeholder="name@example.com">
+          </div>
+          <div class="form-group">
+            <label>Password (min 6 characters)</label>
+            <input type="password" id="regPassword" class="form-control" placeholder="••••••••">
+          </div>
+          <div class="form-group">
+            <label>Assign Role (RBAC Demo)</label>
+            <select id="regRole" class="form-control">
+              <option value="developer">Developer (Basic CRUD)</option>
+              <option value="manager">Manager (Create projects, assign tasks)</option>
+              <option value="admin">Admin (Full privileges, delete projects, manage roles)</option>
+            </select>
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-success" id="submitRegBtn">Create Account</button>
+            <button type="button" class="btn btn-secondary" id="toggleLoginBtn">Back to Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- SECTION 3: PROJECT & TASKS (CRUD & MVC) -->
+    <section id="tasksSection" class="tab-pane">
+      <div class="section-card">
+        <div class="task-header-row">
+          <div>
+            <h2>📋 Task Board & Project CRUD</h2>
+            <p class="section-desc">Full MVC CRUD with Mongoose relationships, pagination, sorting & regex filtering.</p>
+          </div>
+          <div class="action-buttons">
+            <button class="btn btn-primary" id="openNewTaskModalBtn">+ Create New Task</button>
+            <button class="btn btn-secondary" id="refreshTasksBtn">🔄 Refresh</button>
+          </div>
+        </div>
+
+        <!-- Filters Row (Lecture 22) -->
+        <div class="filter-bar">
+          <div class="filter-item search-box">
+            <input type="text" id="taskSearchInput" placeholder="🔍 Search tasks by title / keyword..." class="form-control">
+          </div>
+          <div class="filter-item">
+            <select id="filterStatus" class="form-control">
+              <option value="">All Statuses</option>
+              <option value="todo">To Do</option>
+              <option value="in-progress">In Progress</option>
+              <option value="review">Review</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          <div class="filter-item">
+            <select id="filterPriority" class="form-control">
+              <option value="">All Priorities</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
+          <div class="filter-item">
+            <select id="filterSort" class="form-control">
+              <option value="-createdAt">Newest First</option>
+              <option value="createdAt">Oldest First</option>
+              <option value="title">Title (A-Z)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Task Table/List -->
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Task Title</th>
+                <th>Project</th>
+                <th>Assigned To</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="taskTableBody">
+              <tr>
+                <td colspan="6" class="loading-cell">Loading tasks from MongoDB...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Bar -->
+        <div class="pagination-bar" id="paginationControls"></div>
+      </div>
+    </section>
+
+    <!-- CREATE TASK MODAL -->
+    <div id="taskModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" id="closeTaskModal">&times;</span>
+        <h2>📝 Create New Task</h2>
+        <p class="modal-sub">Triggers Node.js EventEmitter and real-time Socket.IO broadcast</p>
+        <form id="createTaskForm">
+          <div class="form-group">
+            <label>Task Title *</label>
+            <input type="text" id="newTaskTitle" class="form-control" placeholder="e.g. Implement OAuth Flow" required>
+          </div>
+          <div class="form-group">
+            <label>Project *</label>
+            <select id="newTaskProject" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="newTaskDesc" class="form-control" rows="2" placeholder="Task description and acceptance criteria..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Priority</label>
+              <select id="newTaskPriority" class="form-control">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+                <option value="urgent">Urgent</option>
+              </select>
+            </div>
+            <div class="form-group col">
+              <label>Status</label>
+              <select id="newTaskStatus" class="form-control">
+                <option value="todo" selected>To Do</option>
+                <option value="in-progress">In Progress</option>
+                <option value="review">Review</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-primary">Create & Broadcast Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- SECTION 4: MONGO AGGREGATION ANALYTICS (Lecture 23) -->
+    <section id="analyticsSection" class="tab-pane">
+      <div class="section-card">
+        <div class="card-header">
+          <h2>📊 MongoDB Aggregation Pipeline Analytics</h2>
+          <button class="btn btn-secondary btn-sm" id="refreshAnalyticsBtn">🔄 Refresh Pipeline</button>
+        </div>
+        <p class="section-desc">
+          Live analytics computed in real-time by MongoDB using <code>$match</code>, <code>$group</code>, <code>$sort</code>, and <code>$project</code>.
+        </p>
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Total Projects</div>
+            <div class="kpi-value" id="kpiProjects">-</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Total Tasks</div>
+            <div class="kpi-value" id="kpiTasks">-</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Completed Tasks</div>
+            <div class="kpi-value highlight" id="kpiCompleted">-</div>
+          </div>
+        </div>
+
+        <div class="analytics-columns">
+          <div class="analytics-card">
+            <h3>📌 Tasks by Status Distribution ($group)</h3>
+            <div id="statusDistributionList" class="dist-list"></div>
+          </div>
+          <div class="analytics-card">
+            <h3>⚡ Tasks by Priority Distribution ($group)</h3>
+            <div id="priorityDistributionList" class="dist-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: REAL-TIME COLLABORATION & CHAT (Lectures 38, 39, 40) -->
+    <section id="chatSection" class="tab-pane">
+      <div class="section-card chat-wrapper">
+        <div class="chat-sidebar">
+          <h3>⚡ Live Stream & Events</h3>
+          <p class="hint-text">Node.js EventEmitter + Socket.IO live notifications</p>
+          <div class="notifications-feed" id="notificationsFeed">
+            <div class="feed-item system">System: Connected to Socket.IO engine.</div>
+          </div>
+        </div>
+
+        <div class="chat-main">
+          <div class="chat-header">
+            <div>
+              <h3>💬 Project Collaboration Room</h3>
+              <span id="socketStatus" class="socket-pill connected">Socket: Connected</span>
+            </div>
+            <div class="room-selector">
+              <label>Room:</label>
+              <select id="chatRoomSelect" class="form-control form-control-sm">
+                <option value="global">Global Room</option>
+                <option value="project:core">Project: CollabFlow Core</option>
+                <option value="project:mobile">Project: Mobile Client</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="chat-messages" id="chatMessages">
+            <div class="chat-bubble received">
+              <span class="sender-tag admin">Anshuman Jha (Admin)</span>
+              <p>Welcome to CollabFlow! Send a message below to test real-time WebSocket broadcasting.</p>
+              <span class="chat-time">12:00 PM</span>
+            </div>
+          </div>
+
+          <form id="chatForm" class="chat-input-bar">
+            <input type="text" id="chatInput" placeholder="Type a message to broadcast in real time..." class="form-control" autocomplete="off" required>
+            <button type="submit" class="btn btn-primary">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer with Capstone Signature -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>
+        <strong>CollabFlow Capstone Project</strong> | Developed by <strong>Anshuman Jha</strong> (Roll No: <strong>2501010110</strong>)
+      </p>
+      <p class="footer-sub">
+        Built with Node.js, Express.js, MongoDB, Mongoose, JWT, bcrypt, Socket.IO, and EventEmitter.
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
